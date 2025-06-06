@@ -16,7 +16,7 @@
 
 #Why spam filtering still matters
 
-   Although “classic,” spam detection is far from solved. Bulk phishing campaigns, invoice scams, and malicious links constantly evolve, while legitimate marketing newsletters, transactional e-receipts, and          personal messages share overlapping linguistic patterns. An adaptive, learning-based filter therefore remains central to:
+   Although “classic,” spam detection is far from solved. Bulk phishing campaigns, invoice scams, and malicious links constantly evolve, while legitimate             marketing newsletters, transactional e-receipts, and          personal messages share overlapping linguistic patterns. An adaptive, learning-based filter          therefore remains central to:
 
    User-level protection – keeping personal inboxes clean and safeguarding credentials.
 
@@ -28,7 +28,7 @@
 
 #Architectural scope
 
-   We will sketch a self-contained, end-to-end pipeline that can scale from a laptop proof-of-concept to a microservice sitting behind an MTA (Mail Transfer Agent) such as Postfix or AWS SES. The pipeline covers:
+   We will sketch a self-contained, end-to-end pipeline that can scale from a laptop proof-of-concept to a microservice sitting behind an MTA (Mail Transfer          Agent) such as Postfix or AWS SES. The pipeline covers:
 
    Data ingestion – reading raw .eml files or streaming RFC 5322 messages.
 
@@ -50,9 +50,9 @@
    
    NLP pre-processing	nltk, spacy, emoji, beautifulsoup4	Tokenisation, stop-word removal, HTML stripping, emoticon handling.
    
-   Feature engineering	scikit-learn’s TfidfVectorizer, HashingVectorizer; sentence-transformers for BERT mini-models	Balancing sparse bag-of-words with dense semantics.
+   Feature engineering	scikit-learn’s TfidfVectorizer, HashingVectorizer; sentence-transformers for BERT mini-models	Balancing sparse bag-of-words with dense      semantics.
    
-   Modelling	scikit-learn (MultinomialNB, LogReg, LinearSVM), xgboost, lightgbm, skorch for PyTorch wrappers	Start simple, escalate incrementally; keep interpretability options.
+   Modelling	scikit-learn (MultinomialNB, LogReg, LinearSVM), xgboost, lightgbm, skorch for PyTorch wrappers	Start simple, escalate incrementally; keep             interpretability options.
    
    Experiment tracking	mlflow, wandb	Auto-logging metrics, artefacts, and hyper-parameters.
    
@@ -66,7 +66,7 @@
 
    Attachment inspection – file-type heuristics with python-magic, macro de-obfuscation.
 
-   Transformer fine-tuning – DistilBERT-base-uncased (~65 M params) trains in under 40 minutes on a single RTX 4060, raising F1 by 2-4 points on modern phishing sets.
+   Transformer fine-tuning – DistilBERT-base-uncased (~65 M params) trains in under 40 minutes on a single RTX 4060, raising F1 by 2-4 points on modern phishing      sets.
 
    Active-learning loop – incorporate user “Mark as spam/not spam” feedback, retrain nightly.
 
@@ -88,7 +88,7 @@
 
    Adversarial text obfuscation – homograph substitution, zero-width spaces. Counteract with Unicode normalisation and adversarial-training augmentation.
 
-   High recall vs. low false-positive tolerance – business transactional email carries revenue impact. Use threshold-tuning dashboards and differential weighting by sender trust.
+   High recall vs. low false-positive tolerance – business transactional email carries revenue impact. Use threshold-tuning dashboards and differential weighting     by sender trust.
 
    Latency constraints on busy MTAs – ensemble models may breach SLA. Quantise or distil; delegate heavy semantic models to asynchronous second-pass queues.
 
@@ -104,4 +104,8 @@
 
 #Conclusion
 
-   By assembling open-source Python components around clear data ingestion, feature engineering, and deployment edges, you can progress from a weekend proof-of-concept to a production-grade spam-filtering           service. The same scaffold generalises to SMS spam, social-media comment moderation, or phishing-URL detection—illustrating how thoughtful machine-learning design unlocks security and productivity gains far      beyond the inbox.
+   By assembling open-source Python components around clear data ingestion, feature engineering, and deployment edges, you can progress from a weekend proof-of-      concept to a production-grade spam-filtering           service. The same scaffold generalises to SMS spam, social-media comment moderation, or phishing-URL        detection—illustrating how thoughtful machine-learning design unlocks security and productivity gains far beyond the inbox.
+
+   #Output
+
+   ![Image](https://github.com/user-attachments/assets/af83f723-6978-48ed-8530-cdafb6363359)
